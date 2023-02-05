@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="FragmentImage" title="{imagen>/title}">
+        <FlexBox width="1200px"  height="600px" alignItems="Center" justifyContent="Center">
+            <Image src="{imagen>/url}" />
+        </FlexBox>
+        <beginButton>
+            <Button text="Fechar" press=".closeDialog" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

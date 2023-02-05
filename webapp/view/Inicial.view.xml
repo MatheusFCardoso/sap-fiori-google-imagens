@@ -1,0 +1,23 @@
+<mvc:View controllerName="googleimagens.controller.Inicial" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <FlexBox justifyContent="Center">
+                <Input id="inpBuscar" submit=".Buscar" />
+                <Button press=".Buscar" icon="sap-icon://search" />
+            </FlexBox>
+
+            <List headerText="Resultado da Busca" items="{GetImage>/}">
+                <CustomListItem>
+                    <HBox>
+                        <Image src="{GetImage>url}" width="5em" press=".ZoomImage" app:title="{GetImage>title}" app:imageUrl="{GetImage>url}" />
+
+                        <VBox>
+                            <Link text="{GetImage>title}" href="{GetImage>webpageUrl}" target="_blank" />
+                            <Label text="{GetImage>name}" />
+                        </VBox>
+                    </HBox>
+                </CustomListItem>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
