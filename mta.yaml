@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: googleimagens
+description: A Fiori application.
+version: 0.0.1
+modules:
+- name: googleimagens-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: googleimagens-destination-service
+    parameters:
+      content-target: true
+  - name: googleimagens-repo-host
+    parameters:
+      service-key:
+        name: googleimagens-repo-host-key
+  - name: googleimagens-uaa
+    parameters:
+      service-key:
+        name: googleimagens-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: googleimagens_html_repo_host
+          ServiceInstanceName: googleimagens-html5-srv
+          ServiceKeyName: googleimagens-repo-host-key
+          sap.cloud.service: googleimagens
+        - Authentication: OAuth2UserTokenExchange
+          Name: googleimagens_uaa
+          ServiceInstanceName: googleimagens-xsuaa-srv
+          ServiceKeyName: googleimagens-uaa-key
+          sap.cloud.service: googleimagens
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: googleimagens-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: googleimagens-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - googleimagens.zip
+      name: googleimagens
+      target-path: resources/
+- name: googleimagens
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: googleimagens-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: googleimagens-destination-service
+    service-plan: lite
+- name: googleimagens-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: googleimagens-xsuaa-srv
+    service-plan: application
+- name: googleimagens-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: googleimagens-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
