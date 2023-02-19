@@ -70,7 +70,7 @@ sap.ui.define(
           function (oDialog) {
             const oTextModel = new JSONModel({
               url: imagemUrl,
-              title : title,
+              title: title,
             });
             oDialog.setModel(oTextModel, "imagen");
 

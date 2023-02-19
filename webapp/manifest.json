@@ -48,6 +48,7 @@
             "phone": true
         }
     },
+<<<<<<< HEAD
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
@@ -117,6 +118,50 @@
             "async": true,
             "id": "App"
         }
+=======
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "googleimagens.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteInicial",
+          "pattern": ":?query:",
+          "target": [
+            "TargetInicial"
+          ]
+        },
+        {
+          "name": "detail",
+          "pattern": "detail",
+          "target": [
+              "TargetDetail"
+          ]
+      }
+      ],
+      "targets": {
+        "TargetInicial": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Inicial",
+          "viewName": "Inicial"
+        },
+        "TargetDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewName": "Detail",
+          "viewId": "Detail"
+      }
+      }
+>>>>>>> 3376d891ef5dbd01d8f4b030a803b33a89d3bad9
     },
     "sap.cloud": {
         "public": true,
