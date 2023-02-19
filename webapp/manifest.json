@@ -83,7 +83,14 @@
           "target": [
             "TargetInicial"
           ]
-        }
+        },
+        {
+          "name": "detail",
+          "pattern": "detail",
+          "target": [
+              "TargetDetail"
+          ]
+      }
       ],
       "targets": {
         "TargetInicial": {
@@ -92,7 +99,14 @@
           "clearControlAggregation": false,
           "viewId": "Inicial",
           "viewName": "Inicial"
-        }
+        },
+        "TargetDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewName": "Detail",
+          "viewId": "Detail"
+      }
       }
     },
     "rootView": {

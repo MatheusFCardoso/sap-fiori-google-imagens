@@ -1,0 +1,7 @@
+<subHeader>
+    <Toolbar id="_IDGenToolbar1">
+        <SearchField id="_IDGenSearchField1" search=".handleSearch" width="80%" />
+        <Button id="_IDGenButton1" text="Navegar" press=".NavTo" />
+        
+    </Toolbar>
+</subHeader>
